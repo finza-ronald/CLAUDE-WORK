@@ -43,10 +43,26 @@ EXTERNAL_SKILLS_ROOT = REPO_ROOT / "external-skills"
 BACKUP_ROOT = REPO_ROOT / "backup-skills"
 
 
+def is_skill_dir(path: Path) -> bool:
+    """Verdadeiro se `path` é uma pasta de skill válida.
+
+    Regras:
+    - É uma pasta.
+    - O nome não começa com '.'.
+    - Tem, imediatamente dentro, um arquivo SKILL.md (case-insensitive).
+    """
+    if not path.is_dir() or path.name.startswith("."):
+        return False
+    return any(
+        child.is_file() and child.name.lower() == "skill.md"
+        for child in path.iterdir()
+    )
+
+
 def list_skill_dirs(base: Path) -> list[str]:
     if not base.is_dir():
         return []
-    return sorted(p.name for p in base.iterdir() if p.is_dir())
+    return sorted(p.name for p in base.iterdir() if is_skill_dir(p))
 
 
 def backup_target(target_dir: Path) -> Path:
