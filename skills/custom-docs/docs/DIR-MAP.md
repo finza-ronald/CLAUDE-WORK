@@ -109,6 +109,59 @@ Diferença de `REPORTS/`: report é "o que foi feito"; decision é "como decidim
 
 ---
 
+## `CHANGES/`
+
+**Para quê:** registro de alterações feitas no código, de forma direta e simples.
+
+**Template:**
+* Usar seções e subseções, dar preferencia à seções e subseções ao invés de gráficos.
+* As seções pais, são sempre as grandes etapas do que foi feito. Exemplo, se no primeiro dia eu criei todo um módulo, essa é uma seção. Se no segundo do dia eu fiz algo não associado à isso, como a criação de outro módulo de funcionalidades diferentes, essa é outra seção. Mas de preferência, considerar que é tudo um mesmo escopo.
+* As primeiras subseções (pra cada seção), são: "Deleções", "Refatoração", "Novas implementações", "Correções", "Testes", "Alterações de funcionamento", "Novas implementações sem impacto de fluxo", "Documentação"
+* As próximas subseções, são livres pra cada escopo. Mas deve ter uma subseção obrigatória: "Impacto", que é uma subseção de no máximo 4 linhas. Simples, direta, e TÉCNICA.
+* Evite gráficos e diagramas, e tabelas, e esquemas complexos. Dê preferencia ao uso de estruturas unidimensionais: Seções, Subseções, Listas.
+* Aproveite de recursos visuais "inline" e "textuais"
+* Aproveite de termos técnicos que condensem as mudanças
+
+**Regra**:
+* Sem registrar regras de negócios.
+* Sem registrar motivações, ou impactos de negócio. Apenas registros de impacto técnico entre códigos. Apenas um arquivo por task.
+* Descrição direta e simples da mudança. Sem exemplo de código, apenas a referência das linhas, nome dos métodos/funções e classes, path relativo do arquivo, e descrição de no máximo (MÁXIMO) três linhas
+
+---
+
+## `RECIPES/`
+
+**Para quê:** Recipes são manuais e instruções para o agente fazer alguma operação dentro do código ou para o agente implementar algo.
+São arquivos .md, criados pelo agente ou pelo usuário, que descrevem os passos e verificações para realizar algum implementação no código, como um novo status em um entidade,
+ou descrevem um formato ação, como por exemplo como fazer scrapper de uma página web.
+
+**Template:**
+* Arquivos didáticos, detalhados e com exemplos.
+* Explicação clara de casos de uso, e das condições das instruções
+* Usos de fluxogramas, tabelas, e recursos visuais que ajudem a visualizar o fluxo para a mudança.
+* Apoio dos recursos visuais com recursos linguísticos, ou seja, resumo em texto de cada coisa.
+* Descrição dos objetivos da recipe, seguidos dos casos de uso e dos casos de não uso
+* Indicação do resultado esperado de cada passo, e de como revisar cada passo, se for preciso
+* Nomes de arquivos longos e descritivos
+
+## `WORK/`
+
+**Para quê:** Em work, registramos um arquivo .md para um tarefa feita, registrando o trabalho que fizemos. Isso pode ser solicitado ao agent, ou escrito direto pelo usuário. Essa é uma forma de rastrearmos a complexidade e a motivação de tudo que foi feito durante o trabalho.
+
+**Template:**
+* Arquivos .md únicos pra cada task. Exemplo, FIN-1251.md
+* Cada novo registro (escopo do que foi feito), deve ser uma nova seção ou subseção
+* A maior seção pai do arquivo é sempre a data e o horário do trabalho
+* A subseções são sempre os escopos dos trabalhos realizados
+* As subseções devem ter: horário solicitado de registro (que horas foi adicionado ao arquivo), horário de início do trabalho daquele escopo, duração estimada do trabalho realizado
+* A descrição do trabalho deve conter infos dos arquivos alterados, volume do trabalho, complexidade, risco das alterações e impactos
+* Usar bastante listas para descrever cada trabalho
+* Separar visualmente dias diferentes, ou escopos de trabalhos diferentes com "---" (markdown)
+* Seções de dia de trabalho, devem ter a informação do nome da branch trabalhada, se disponível
+
+**Regras:** Caso o nome da task nao seja fornecido, pode se basear no nome da branch (procure pelo prefixo FIN-NUMBER). Apenas um arquivo por task
+
+
 ## Resumo rápido
 
 | Pasta | Quem escreve | Foco |
@@ -122,3 +175,6 @@ Diferença de `REPORTS/`: report é "o que foi feito"; decision é "como decidim
 | `BUSINESS-RULES/` | **só usuário** | regra de negócio (externa ao código) |
 | `INTEGRATION-NOTES/` | agente + usuário | conhecimento de outros sistemas |
 | `DECISIONS/` | agente + usuário | diretrizes para tasks futuras |
+| `CHANGES/` | agente | mapeamento de mudanças técnicas de código |
+| `RECIPES/` | agente + usuário | instruções para implementações ou ações |
+| `WORK/` | agente | registro de trabalho realizado, com infos de volume, complexidade, e duração |

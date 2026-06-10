@@ -18,6 +18,8 @@ Sempre que você for **criar** ou **procurar** um destes artefatos no repositór
 - Plano de implementação ou subplano → `PLANS/`
 - Estudo de código / fluxo / módulo / endpoint → `STUDIES/`
 - "O que foi feito" após uma task / decisão de implementação / changelog interno → `REPORTS/`
+- Mudanças feitas no código, como refatorações, deleções, novo código implementado, tudo mapeado de forma simples e direta, em seções organizadas -> `CHANGES/`
+- Mapeamento do trabalho executado, para posterior consulta, sobre o que foi feito, em quanto tempo, para que -> `WORK/`
 - Mapeamento direto de onde-está-o-quê no código → `CODE-MAPPER/`
 - Regra de negócio (informação externa ao código) → `BUSINESS-RULES/` *(não editar sem pedido explícito)*
 - Documento de outro sistema/repositório trazido como referência (ex.: doc do backend enquanto se trabalha no frontend) → `INTEGRATION-NOTES/`
@@ -33,6 +35,7 @@ Se um artefato não se encaixa em nenhuma das pastas acima, **prefira `TEMP/`** 
 2. Salve o arquivo `.md` na subpasta correta seguindo a convenção em [docs/DIR-MAP.md](docs/DIR-MAP.md).
 3. Para `PLANS/` e `REPORTS/`, **use o prefixo da task** (ex.: `FIN-99999`) no nome do arquivo. Se uma task tem múltiplos planos/reports, agrupe em uma subpasta `PLANS/FIN-99999/` ou `REPORTS/FIN-99999/`.
 4. Para `TEMP/` e `INTEGRATION-NOTES/`, outros formatos além de `.md` são aceitos (json, txt, cópias de arquivos).
+5. Para `CHANGES/`, siga uma estrutura com o prefixo da task no nome (ex.: `FIN-99999-changes.md`). Apenas um arquivo por task.
 
 ## Pastas protegidas
 
