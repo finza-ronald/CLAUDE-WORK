@@ -149,6 +149,7 @@ ou descrevem um formato ação, como por exemplo como fazer scrapper de uma pág
 **Para quê:** Em work, registramos um arquivo .md para um tarefa feita, registrando o trabalho que fizemos. Isso pode ser solicitado ao agent, ou escrito direto pelo usuário. Essa é uma forma de rastrearmos a complexidade e a motivação de tudo que foi feito durante o trabalho.
 
 **Template:**
+* Uma sub-pasta pra cada dia. Exemplo: ....WORK/12-06-2026/FIN-1251.md
 * Arquivos .md únicos pra cada task. Exemplo, FIN-1251.md
 * Cada novo registro (escopo do que foi feito), deve ser uma nova seção ou subseção
 * A maior seção pai do arquivo é sempre a data e o horário do trabalho

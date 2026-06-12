@@ -312,7 +312,26 @@ Cards-pai consultados: FIN-X, FIN-Y, ...
 5. **ADF do comment pode ser profundamente aninhado** (bulletList → listItem → paragraph → text). Walk recursivo é mais robusto que jq encadeado.
 6. **Status traduzido vs canônico.** O campo `name` no status pode vir em PT-BR ("Concluído") ou EN ("Done") dependendo da configuração da issue. Para filtros use o `statusCategory.key` (`new` / `indeterminate` / `done`).
 
----
+---## 11. Registrar e distribuir tempo (modo escrita — opcional)
+
+> A coleta (seções 1–10) é read-only. Este modo **escreve** worklog e só deve rodar mediante pedido explícito do usuário.
+
+### Registrar
+- Tool: `addWorklogToJiraIssue` (`timeSpent` ex. `"1h 30m"`, `started` ISO 8601 com offset ex. `2026-06-09T09:15:00.000-0300`, `commentBody` em markdown com lista técnica de 5+ itens).
+- Atualizar um worklog existente: passar `worklogId` (mantém comentário, muda `started`/`timeSpent`).
+- O servidor normaliza o offset (`-0300` → `-0400`); o instante e a **data** permanecem corretos.
+
+### Pesos por score
+- Pontuar cada subtarefa de **1 a 10** combinando 3 eixos: **volume** (linhas), **complexidade** (lógica nova vs. código movido/mecânico) e **risco** (toca produção / muda comportamento).
+- O score vira **peso relativo** na divisão do tempo.
+
+### Distribuir encaixando a jornada
+1. Tempo útil = jornada − almoço (ex.: 9:15–18:00 − 2h = **6h45m** = 405 min).
+2. Subtrair o que já está registrado; o resto é o bolo a distribuir.
+3. `tempo_i = resto × peso_i / Σpesos`, arredondado a múltiplos de 5 min **mantendo a soma exata**.
+4. **Encadear cronologicamente** respeitando blocos manhã/tarde e o almoço; ordem técnica coerente (ex.: testes de garantia antes do refactor; correção de testes depois do split).
+5. `started` de cada worklog no slot calculado.
+
 
 ## 10. Exemplo completo (resumo do fluxo)
 
@@ -334,3 +353,23 @@ Cards-pai consultados: FIN-X, FIN-Y, ...
 ```
 
 Para volumes >25 subtarefas, delegar passos 3-5 a um subagente via `Agent` tool (subagent_type=general-purpose) com instruções explícitas sobre cloudId, fields, e formato de saída esperado.
+
+## 11. Registrar e distribuir tempo (modo escrita — opcional)
+
+> A coleta (seções 1–10) é read-only. Este modo **escreve** worklog e só deve rodar mediante pedido explícito do usuário.
+
+### Registrar
+- Tool: `addWorklogToJiraIssue` (`timeSpent` ex. `"1h 30m"`, `started` ISO 8601 com offset ex. `2026-06-09T09:15:00.000-0300`, `commentBody` em markdown com lista técnica de 5+ itens).
+- Atualizar um worklog existente: passar `worklogId` (mantém comentário, muda `started`/`timeSpent`).
+- O servidor normaliza o offset (`-0300` → `-0400`); o instante e a **data** permanecem corretos.
+
+### Pesos por score
+- Pontuar cada subtarefa de **1 a 10** combinando 3 eixos: **volume** (linhas), **complexidade** (lógica nova vs. código movido/mecânico) e **risco** (toca produção / muda comportamento).
+- O score vira **peso relativo** na divisão do tempo.
+
+### Distribuir encaixando a jornada
+1. Tempo útil = jornada − almoço (ex.: 9:15–18:00 − 2h = **6h45m** = 405 min).
+2. Subtrair o que já está registrado; o resto é o bolo a distribuir.
+3. `tempo_i = resto × peso_i / Σpesos`, arredondado a múltiplos de 5 min **mantendo a soma exata**.
+4. **Encadear cronologicamente** respeitando blocos manhã/tarde e o almoço; ordem técnica coerente (ex.: testes de garantia antes do refactor; correção de testes depois do split).
+5. `started` de cada worklog no slot calculado.
